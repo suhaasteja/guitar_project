@@ -13,7 +13,7 @@ const Fretboard = (props) => {
                 {
                     Object.values(fretData).map((string, i) => {
                         return (
-                            <div className='flex' key={i} style={{justifyContent: "space-between"}}>
+                            <div className='flex' key={i}>
                                 <span className='string-name'>{stringNames[i] !== 'numbers' && stringNames[i]}</span>
                                 <String frets={string} string={stringNames[i]} handleFretClick={handleFretClick} />
                             </div>

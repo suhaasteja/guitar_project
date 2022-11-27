@@ -4,6 +4,21 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import FretBoard from './Components/Fretboard';
 
+const allNotes = ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#'];
+
+
+const getNoteName = (string, fret) => {
+  const index = allNotes.indexOf(string.toLowerCase())+fret+1;
+  let note = allNotes[index];
+  
+  if(!note){
+    // index > allnotes length
+    note = allNotes[index-allNotes.length];
+  }
+
+  return note;
+}
+
 function App() {
   const [fretData, setFretData] = useState({
     e:Array(12).fill(""),
@@ -15,25 +30,15 @@ function App() {
     numbers: Array(12).fill(""),
   });
 
+  const [input, setInput] = useState('');
+
   const handleFretClick = (string, fret) => {
     setFretData(prev => {
       if(string === 'numbers'){
         return {...prev};
-        // const keys = Object.keys(prev);
-        // keys.forEach(key => {
-        //   prev[key].forEach((el, i) => {
-        //     if (prev[key][fret]){
-        //       prev[key][fret] = false;
-        //     }else{
-        //       prev[key][fret] = true;
-        //     }
-        //   })
-        // })
-        // console.log(prev);
-        // return {...prev};
       }
       const val = prev[string][fret];
-      prev[string][fret] = val === true ? false : true;
+      prev[string][fret] = val ? "" : getNoteName(string, fret);
       return {...prev};
     })
   }
@@ -52,9 +57,18 @@ function App() {
       )
   }
 
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+  }
+
   return (
     <div className="App flex">
-      <Navbar handleClear={handleClear} />
+      <Navbar handleClear={handleClear} input={input} handleInputChange={handleInputChange} handleFormSubmit={handleFormSubmit} />
       <FretBoard fretData={fretData} handleFretClick = {handleFretClick} />
     </div>
   )
