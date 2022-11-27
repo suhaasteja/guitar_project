@@ -1,11 +1,13 @@
 import React from 'react'
 
- const Navbar = () => {
+ const Navbar = (props) => {
+   const { handleClear } = props;
   return (
     <div className='navbar flex'>
         <h2>Guitar Project</h2>
-        <div className="forms">
-            <input type={'text'} />
+        <div className="forms flex">
+          <button id="clear-btn" onClick={handleClear}>Clear</button>
+            <input type={'text'} placeholder="search note or chord" />
         </div>
     </div>
   )

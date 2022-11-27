@@ -27,13 +27,13 @@
 
 .fret{
   position: relative;
-  border: 1px solid;
-  width: 100px;
+  border: 0.01px solid #385238;
+  width: 101px;
   height: 40px;
   cursor: pointer;
   justify-content: center;
-  border-bottom: 2px solid;
-  border-top: none;
+  border-bottom: 0.005px solid inherit;
+  border-right: 0.005px solid  inherit;
 }
 
 .circle{
@@ -42,21 +42,26 @@
   height: 30px;
   border-radius: 50%;
   background: white;
-  top: -15px;
 }
 
 .string{
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.string:first-child span{
-  border: none;
-  border-bottom: 2px solid;
-  pointer-events: none;
+.forms{
+  gap: 15px;
+  justify-content: end;
+  width: fit-content;
 }
 
-/* .string:last-child span{
-  border: none;
-  border-bottom: 2px solid;
-  pointer-events: none;
-} */
+.note{
+    width: 102px;
+    height: 5px;
+    background: white;
+    position: absolute;
+}
+
+.string-name{
+  width: 15px;
+}
+

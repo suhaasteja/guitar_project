@@ -3,33 +3,20 @@ import String from './String';
 
 
 
-const Fretboard = () => {
-    const [fretData, setFretData] = useState([
-        Array(12).fill(""),
-        Array(12).fill(""),
-        Array(12).fill(""),
-        Array(12).fill(""),
-        Array(12).fill(""),
-        Array(12).fill(""),
-    ]);
-
-    const handleFretClick = (string, fret) => {
-        console.log('string', string, 'fret', fret);
-        setFretData(prev => {
-            const val = prev[string][fret];
-            prev[string][fret] = prev[string][fret] === true ? false : true;
-            return [...prev];
-        })
-        console.log("fretdata", fretData);
-    }
+const Fretboard = (props) => {
+    const {fretData, handleFretClick} = props;
+    const stringNames = Object.keys(fretData);
 
     return (
         <div className='flex'>
             <div className="fretboard">
                 {
-                    fretData.map((string, i) => {
+                    Object.values(fretData).map((string, i) => {
                         return (
-                            <String frets={string} string={i} key={i} handleFretClick={handleFretClick} />
+                            <div className='flex' key={i} style={{justifyContent: "space-between"}}>
+                                <span className='string-name'>{stringNames[i] !== 'numbers' && stringNames[i]}</span>
+                                <String frets={string} string={stringNames[i]} handleFretClick={handleFretClick} />
+                            </div>
                         )
                     })
                 }
