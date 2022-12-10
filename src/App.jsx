@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import FretBoard from './Components/Fretboard';
 
-const magicScale = ["t", "t", "t", "h", "t", "t", "t", "h"]
+const magicScale = ["t", "t", "h", "t", "t", "t", "h"]
 const allNotes = ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#'];
 
 
@@ -67,8 +67,14 @@ function App() {
 
     notes.forEach((n, i) => {
       // magicScaleObj[n] = 
+      const a = [];
+      magicScale.forEach(m => {
+        a.push(m);
+      })
+      magicScaleObj[n] = a;
     })
 
+    // console.log(magicScaleObj);
     // notes.forEach((n, i) => {
     //   const j = allNotes.indexOf(n);
     //   if(j){
@@ -80,7 +86,7 @@ function App() {
 
     setChord(chord);
 
-    console.log("notes", notes,"strings", strings, "chord", "chord","noteNumbers", noteNumbers, "fretData", fretData);
+    // console.log("notes", notes,"strings", strings, "chord", "chord","noteNumbers", noteNumbers, "fretData", fretData);
   }
 
   const handleClear = () => {
@@ -109,8 +115,9 @@ function App() {
   return (
     <div className="App flex">
       <Navbar handleClear={handleClear} input={input} handleInputChange={handleInputChange} handleFormSubmit={handleFormSubmit} />
+      <p>Click on strings to visualise notes</p>
       <FretBoard fretData={fretData} handleFretClick = {handleFretClick} />
-      <p>notes = {chord}</p>
+      {/* <p>notes = {chord}</p> */}
     </div>
   )
 }
